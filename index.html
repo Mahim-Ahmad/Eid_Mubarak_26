@@ -124,6 +124,7 @@ body{
   animation:goldPulse 4s ease-in-out infinite;
 }
 @keyframes goldPulse{0%,100%{text-shadow:0 0 40px rgba(212,175,55,.7),0 0 80px rgba(212,175,55,.3)}50%{text-shadow:0 0 60px rgba(212,175,55,1),0 0 120px rgba(212,175,55,.5)}}
+@keyframes textShimmer{0%{background-position:0%}100%{background-position:300%}}
 .h-bn{
   font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
   font-size:clamp(2rem,5.5vw,4.2rem);font-weight:900;
@@ -347,28 +348,6 @@ body{
 .feat-card:hover .feat-icon{transform:scale(1.22) rotate(8deg)}
 .feat-name{font-family:'Cinzel','Noto Serif Bengali',serif;font-size:1.05rem;color:var(--g2);margin-bottom:.55rem;letter-spacing:1px}
 .feat-txt{font-size:.86rem;color:rgba(253,246,227,.58);line-height:1.7}
-.quiz-sec{max-width:650px;margin:0 auto}
-.q-shell{
-  background:linear-gradient(145deg,rgba(7,20,40,.93),rgba(4,12,26,.97));
-  border:1px solid rgba(212,175,55,.18);border-radius:24px;padding:2.5rem 2rem;
-}
-.q-prog{height:4px;background:rgba(212,175,55,.1);border-radius:99px;margin-bottom:1.5rem;overflow:hidden}
-.q-prog-fill{height:100%;background:linear-gradient(90deg,#0e7490,var(--g2));border-radius:99px;transition:width .6s ease}
-.q-score-disp{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--g1);text-align:center;margin-bottom:1rem;text-shadow:0 0 18px rgba(212,175,55,.4)}
-.q-text{font-size:1.02rem;color:var(--cream);line-height:1.7;text-align:center;min-height:52px;margin-bottom:1.5rem}
-.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
-.q-opt{
-  background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.17);
-  border-radius:13px;padding:.85rem;color:var(--cream2);font-size:.88rem;
-  font-family:'Noto Serif Bengali',Georgia,serif;cursor:pointer;text-align:center;
-  transition:all .3s;
-}
-.q-opt:hover:not(.locked){background:rgba(212,175,55,.14);border-color:var(--g2);transform:scale(1.02)}
-.q-opt.right{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac}
-.q-opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5}
-.q-opt.locked{cursor:default}
-.q-next{display:none;margin-top:1.1rem;width:100%;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);border-radius:99px;padding:.6rem;color:var(--g1);font-family:'Noto Serif Bengali',Georgia,serif;font-size:.88rem;cursor:pointer;transition:all .25s}
-.q-next:hover{background:rgba(212,175,55,.2)}
 .fab{
   position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;
   width:56px;height:56px;border-radius:50%;border:none;
@@ -387,7 +366,6 @@ footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,5
   .wheel-outer{width:270px;height:270px}
   #wcanvas{width:270px!important;height:270px!important}
   .cd-n{font-size:2.2rem}.cd-box{min-width:74px;padding:1rem}
-  .q-opts{grid-template-columns:1fr}
   .lot-shell{padding:1.5rem 1rem}
   .feats-grid{grid-template-columns:1fr 1fr}
 }
@@ -406,7 +384,6 @@ footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,5
   <a class="nb" href="#countdown">⏳ কাউন্টডাউন</a>
   <a class="nb" href="#lottery">🎰 সালামি লটারি</a>
   <a class="nb" href="#greeting">💌 শুভেচ্ছা</a>
-  <a class="nb" href="#quiz">🧠 কুইজ</a>
   <a class="nb" href="#features">🌙 ঈদ</a>
 </nav>
 
@@ -478,8 +455,8 @@ footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,5
         <input class="lot-inp" id="lotCgpa" placeholder="CGPA (যেমন: 3.75) 📊" maxlength="4">
         <select class="lot-inp lot-select" id="lotLevel" onchange="levelColorChange(this)">
           <option value="" disabled selected style="background:#040c1a;color:rgba(253,246,227,.4)">Junior / Senior? 🎓</option>
-          <option value="Junior" style="background:#040c1a;color:#93c5fd">🎒 Junior </option>
-          <option value="Senior" style="background:#040c1a;color:#fdba74">🎓 Senior </option>
+          <option value="Junior" style="background:#040c1a;color:#93c5fd">🎒 Junior</option>
+          <option value="Senior" style="background:#040c1a;color:#fdba74">🎓 Senior</option>
         </select>
         <button class="spin-btn" id="spinBtn" onclick="doSpin()">🎰 &nbsp; চাকা ঘোরাও!</button>
       </div>
@@ -535,23 +512,6 @@ footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,5
   </div>
 </section>
 
-<!-- <div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
-
-<section class="sec quiz-sec" id="quiz">
-  <div class="sec-center">
-    <span class="sec-orn">🧠 ✦ 🧠</span>
-    <div class="sec-title">ঈদ কুইজ</div>
-    <div class="sec-sub">কতটুকু জানো ঈদ সম্পর্কে?</div>
-  </div>
-  <div class="q-shell">
-    <div class="q-prog"><div class="q-prog-fill" id="qFill" style="width:0%"></div></div>
-    <div class="q-score-disp" id="qScr">স্কোর: ০</div>
-    <div class="q-text" id="qTxt">লোড হচ্ছে...</div>
-    <div class="q-opts" id="qOpts"></div>
-    <button class="q-next" id="qNext" onclick="nextQ()">পরের প্রশ্ন →</button>
-  </div>
-</section> -->
-
 <div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
 
 <section class="sec feats-sec" id="features">
@@ -563,8 +523,6 @@ footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,5
     <div class="feat-card"><span class="feat-icon">🕌</span><div class="feat-name">ঈদের নামাজ</div><div class="feat-txt">ভোরে ঈদগাহে যাও, আল্লাহর কাছে শুকরিয়া জানাও।</div></div>
     <div class="feat-card"><span class="feat-icon">🍮</span><div class="feat-name">সেমাই পায়েস</div><div class="feat-txt">মায়ের হাতের সেমাই ছাড়া ঈদ কি হয়? মনভরে খাও!</div></div>
     <div class="feat-card"><span class="feat-icon">💸</span><div class="feat-name">ঈদের সালামি</div><div class="feat-txt">উপরের লটারিতে চেষ্টা করো — হয়তো জ্যাকপট! 🎰</div></div>
-    <!-- <div class="feat-card"><span class="feat-icon">👗</span><div class="feat-name">নতুন পোশাক</div><div class="feat-txt">ঈদে নতুন জামার গন্ধ অন্যরকম। পরিপাটি হও!</div></div>
-    <div class="feat-card"><span class="feat-icon">🤗</span><div class="feat-name">কোলাকুলি</div><div class="feat-txt">রাগ-অভিমান ভুলে সবার সাথে কোলাকুলি করো!</div></div> -->
     <div class="feat-card" onclick="doFW()"><span class="feat-icon">🎆</span><div class="feat-name">আতশবাজি!</div><div class="feat-txt">ক্লিক করো — স্ক্রিনে আতশবাজি ফুটবে! ✨</div></div>
   </div>
 </section>
@@ -608,7 +566,6 @@ const fc=document.getElementById('fwCanvas'),fx=fc.getContext('2d');
 let parts=[];
 function resizeFW(){fc.width=innerWidth;fc.height=innerHeight;}
 resizeFW();addEventListener('resize',resizeFW);
-
 function doFW(){
   for(let b=0;b<10;b++){
     setTimeout(function(){
@@ -620,18 +577,14 @@ function doFW(){
     },b*220);
   }
 }
-
 function fwTick(){
   parts=parts.filter(function(p){return p.life>0;});
-  if(parts.length===0){
-    fx.clearRect(0,0,fc.width,fc.height);
-  } else {
-    fx.fillStyle='rgba(4,12,26,.18)';
-    fx.fillRect(0,0,fc.width,fc.height);
+  if(parts.length===0){fx.clearRect(0,0,fc.width,fc.height);}
+  else{
+    fx.fillStyle='rgba(4,12,26,.18)';fx.fillRect(0,0,fc.width,fc.height);
     parts.forEach(function(p){
       p.x+=p.vx;p.y+=p.vy;p.vy+=.07;p.life-=p.dec;
-      fx.globalAlpha=p.life;
-      fx.beginPath();fx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      fx.globalAlpha=p.life;fx.beginPath();fx.arc(p.x,p.y,p.r,0,Math.PI*2);
       fx.fillStyle=p.col;fx.fill();
     });
     fx.globalAlpha=1;
@@ -698,7 +651,6 @@ var PRIZES=[
   {t:'৳20',a:20,bg:'#3f1f01',fg:'#fed7aa',e:'💴'},
 ];
 var PN=PRIZES.length,PARC=2*Math.PI/PN;
-
 document.getElementById('pChips').innerHTML=
   [...new Set(PRIZES.map(function(p){return p.a;}))].sort(function(a,b){return a-b;}).map(function(a){
     var p=PRIZES.find(function(x){return x.a===a;});
@@ -724,8 +676,7 @@ function drawWheel(){
     wCtx.save();wCtx.translate(WCX,WCY);wCtx.rotate(s+PARC/2);
     wCtx.textAlign='right';wCtx.fillStyle=p.fg;
     wCtx.font='700 '+(p.a>=500?11:13)+'px Noto Serif Bengali,Georgia,serif';
-    wCtx.fillText(p.t,WR-9,5);
-    wCtx.restore();
+    wCtx.fillText(p.t,WR-9,5);wCtx.restore();
   }
   wCtx.beginPath();wCtx.arc(WCX,WCY,WR,0,Math.PI*2);
   wCtx.strokeStyle='rgba(212,175,55,.5)';wCtx.lineWidth=3;wCtx.stroke();
@@ -772,7 +723,6 @@ function doSpin(){
 }
 
 var lastEntry=null;
-
 function showResult(p,nm){
   var bk=document.getElementById('lotBkash').value.trim();
   var cgpa=document.getElementById('lotCgpa').value.trim();
@@ -805,19 +755,16 @@ function showResult(p,nm){
   }catch(e){}
   lbData.unshift({nm:nm,a:p.a,e:p.e});lbData=lbData.slice(0,10);renderLB();
 }
-
 function renderLB(){
   var s=[...lbData].sort(function(a,b){return b.a-a.a;}),ranks=['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
   document.getElementById('lbBody').innerHTML=s.length
     ?s.map(function(r,i){return'<div class="lb-row" style="animation-delay:'+(i*.06)+'s"><span class="lb-rk">'+(ranks[i]||'•')+'</span><span class="lb-nm">'+r.e+' '+r.nm+'</span><span class="lb-pr">৳'+r.a.toLocaleString()+'</span></div>';}).join('')
     :'<div class="lb-empty">এখনো কেউ খেলেনি!</div>';
 }
-
 function levelColorChange(sel){
   if(sel.value==='Junior'){sel.style.borderColor='rgba(96,165,250,.7)';sel.style.background='rgba(59,130,246,.12)';sel.style.color='#93c5fd';}
   else if(sel.value==='Senior'){sel.style.borderColor='rgba(251,146,60,.7)';sel.style.background='rgba(249,115,22,.12)';sel.style.color='#fdba74';}
 }
-
 function sendWA(){
   if(!lastEntry){alert('আগে spin করো!');return;}
   var msg='🎰 ঈদের সালামি লটারি 🎰\n\n👤 নাম: '+lastEntry.nm+'\n📱 বিকাশ: '+lastEntry.bk+'\n📊 CGPA: '+lastEntry.cgpa+'\n🎓 লেভেল: '+lastEntry.lvl+'\n💰 পুরস্কার: ৳'+lastEntry.prize+'\n⏰ সময়: '+new Date().toLocaleTimeString()+'\n\n🌙 Mahim Ahmad এর তরফ থেকে ঈদ মুবারক!';
@@ -866,40 +813,6 @@ function cpGreet(){
   navigator.clipboard.writeText(t).then(function(){var b=event.target;b.textContent='✅ কপি!';setTimeout(function(){b.textContent='📋 কপি';},2000);});
 }
 function shrGreet(){var t=document.getElementById('gBody').textContent;if(navigator.share)navigator.share({text:t});else cpGreet();}
-
-// ═══ QUIZ ═══
-var QS=[
-  {q:'ঈদুল ফিতর কোন মাসের ১ তারিখে?',opts:['রমজান','শাওয়াল','মহররম','রজব'],a:1},
-  {q:'ঈদের নামাজ কত রাকাত?',opts:['২ রাকাত','৪ রাকাত','৩ রাকাত','৮ রাকাত'],a:0},
-  {q:'ঈদুল ফিতরে কোন ইবাদত ফরজ?',opts:['হজ','যাকাত','সদকাতুল ফিতর','তারাবিহ'],a:2},
-  {q:'"ঈদ মুবারক" মানে কী?',opts:['ঈদের খাবার','শুভ ঈদ','ঈদের নামাজ','খুশির সময়'],a:1},
-  {q:'ঈদের দিন সকালে কী সুন্নত?',opts:['না খেয়ে নামাজে যাওয়া','মিষ্টি খেয়ে নামাজে যাওয়া','সন্ধ্যায় নামাজ','বাড়িতে পড়া'],a:1},
-  {q:'ঈদুল আযহায় প্রধান আমল?',opts:['রোজা','কোরবানি','তারাবিহ','ইতিকাফ'],a:1},
-  {q:'"তাকাব্বালাল্লাহু মিন্না ওয়া মিনকুম" অর্থ?',opts:['ঈদ মুবারক','আল্লাহ আমল কবুল করুন','আল্লাহু আকবার','সুবহানাল্লাহ'],a:1},
-  {q:'ঈদের নামাজে অতিরিক্ত তাকবীর?',opts:['৪টি','৬টি','৮টি','১২টি'],a:1},
-];
-var qi=0,qs=0,qa=false;
-function loadQ(){
-  if(qi>=QS.length){
-    document.getElementById('qTxt').textContent='কুইজ শেষ! 🎉';
-    document.getElementById('qOpts').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:1rem"><div style="font-size:3rem">🏆</div><div style="color:var(--g1);font-family:Cinzel,serif;font-size:1.2rem;margin:.5rem">স্কোর: '+qs+'/'+QS.length+'</div><button class="g-make" style="margin-top:.8rem" onclick="resetQ()">🔄 আবার খেলো</button></div>';
-    document.getElementById('qNext').style.display='none';return;
-  }
-  qa=false;var q=QS[qi];
-  document.getElementById('qFill').style.width=(qi/QS.length*100)+'%';
-  document.getElementById('qTxt').textContent=q.q;
-  document.getElementById('qOpts').innerHTML=q.opts.map(function(o,i){return'<button class="q-opt" onclick="ansQ('+i+')">'+o+'</button>';}).join('');
-  document.getElementById('qNext').style.display='none';
-}
-function ansQ(i){
-  if(qa)return;qa=true;var q=QS[qi];
-  document.querySelectorAll('.q-opt').forEach(function(o,j){o.classList.add('locked');if(j===q.a)o.classList.add('right');else if(j===i)o.classList.add('wrong');});
-  if(i===q.a){qs++;document.getElementById('qScr').textContent='স্কোর: '+qs;doFW();}
-  document.getElementById('qNext').style.display='block';
-}
-function nextQ(){qi++;loadQ();}
-function resetQ(){qi=0;qs=0;document.getElementById('qScr').textContent='স্কোর: ০';loadQ();}
-loadQ();
 </script>
 </body>
 </html>
