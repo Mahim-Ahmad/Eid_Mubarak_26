@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ঈদ মুবারক ✨</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Serif+Bengali:wght@400;700;900&family=Cinzel:wght@700;900&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --g1:#FFE566;--g2:#D4AF37;--g3:#A07828;--g4:#6B4F10;
+  --bg:#040c1a;--bg2:#071428;
+  --cream:#FDF6E3;--cream2:#F5E6C8;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--cream);
+  font-family:'Noto Serif Bengali','Noto Sans Bengali','Kalpurush',Georgia,serif;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+#starsBg{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+#fwCanvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  z-index:500;pointer-events:none;
+}
+.page{position:relative;z-index:10}
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:center;gap:6px;flex-wrap:wrap;
+  padding:10px 12px;
+  background:linear-gradient(180deg,rgba(4,12,26,.97) 70%,transparent);
+  backdrop-filter:blur(8px);
+  min-height:44px;
+}
+.nb{
+  font-size:.78rem;padding:5px 14px;border-radius:99px;
+  background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);
+  color:var(--g1);cursor:pointer;transition:all .25s;
+  text-decoration:none;display:inline-block;
+  font-family:'Noto Serif Bengali',Georgia,serif;
+}
+.nb:hover{background:rgba(212,175,55,.22);transform:translateY(-2px);box-shadow:0 4px 16px rgba(212,175,55,.2)}
+@media(max-width:480px){
+  .nav{padding:8px 8px;gap:4px}
+  .nb{font-size:.7rem;padding:4px 10px}
+  .hero{padding-top:8rem}
+}
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:6rem 1.5rem 3rem;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(212,175,55,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+.hero-frame{
+  position:absolute;inset:16px;
+  border:1px solid rgba(212,175,55,.12);
+  border-radius:4px;pointer-events:none;
+}
+.hero-frame::before{
+  content:'';position:absolute;inset:4px;
+  border:1px solid rgba(212,175,55,.06);
+  border-radius:2px;
+}
+.c-d{position:absolute;width:8px;height:8px;background:rgba(212,175,55,.5);transform:rotate(45deg)}
+.c-d.tl{top:14px;left:14px}.c-d.tr{top:14px;right:14px}
+.c-d.bl{bottom:14px;left:14px}.c-d.br{bottom:14px;right:14px}
+.lan-row{position:absolute;top:0;left:0;right:0;height:190px;overflow:hidden;pointer-events:none}
+.lan{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:swing var(--d,3.5s) ease-in-out infinite;animation-delay:var(--dl,0s)}
+@keyframes swing{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.lan-rope{width:1px;height:52px;background:linear-gradient(180deg,rgba(212,175,55,.8),rgba(212,175,55,.2))}
+.lan-cap{width:24px;height:8px;background:var(--g4);border-radius:3px 3px 0 0;border-top:1px solid var(--g3)}
+.lan-body{
+  width:34px;height:54px;
+  border-radius:50% 50% 42% 42%/35% 35% 52% 52%;
+  position:relative;
+  animation:lanGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes lanGlow{from{filter:brightness(1)}to{filter:brightness(1.35) saturate(1.2)}}
+.lan-shine{position:absolute;top:7px;left:5px;width:9px;height:16px;background:rgba(255,255,255,.2);border-radius:50%;transform:rotate(-20deg)}
+.lan-drip{width:2px;height:10px;background:currentColor;opacity:.4;margin-top:1px}
+.moon-wrap{
+  position:relative;width:170px;height:170px;margin:0 auto 1.8rem;
+  animation:moonFloat 8s ease-in-out infinite;
+}
+@keyframes moonFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-20px) rotate(2deg)}}
+.moon-halo{
+  position:absolute;inset:-28px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,.25) 0%,rgba(212,175,55,.06) 55%,transparent 70%);
+  animation:haloPulse 4s ease-in-out infinite;
+}
+@keyframes haloPulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.12);opacity:1}}
+.moon-body{
+  position:absolute;inset:18px;border-radius:50%;
+  background:radial-gradient(circle at 36% 32%,#FFFBE6,#F5D870 35%,#D4AF37 65%,#8B6914);
+  box-shadow:0 0 45px rgba(212,175,55,.9),0 0 100px rgba(212,175,55,.45),0 0 180px rgba(212,175,55,.15);
+}
+.moon-bite{
+  position:absolute;top:26px;left:40px;width:98px;height:98px;border-radius:50%;
+  background:radial-gradient(circle at 45% 42%,var(--bg2),var(--bg));
+}
+.moon-star1{position:absolute;top:-10px;right:-6px;font-size:2.2rem;filter:drop-shadow(0 0 10px rgba(212,175,55,.9));animation:starOrbit 22s linear infinite}
+.moon-star2{position:absolute;bottom:8px;right:-14px;font-size:1.1rem;opacity:.7;filter:drop-shadow(0 0 6px rgba(212,175,55,.8));animation:starOrbit 16s linear infinite reverse}
+@keyframes starOrbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.h-arabic{
+  font-family:'Amiri',Georgia,serif;
+  font-size:clamp(2.4rem,7vw,5rem);
+  letter-spacing:7px;line-height:1.2;
+  color:var(--g1);
+  text-shadow:0 0 40px rgba(212,175,55,.7),0 0 80px rgba(212,175,55,.3);
+  animation:goldPulse 4s ease-in-out infinite;
+}
+@keyframes goldPulse{0%,100%{text-shadow:0 0 40px rgba(212,175,55,.7),0 0 80px rgba(212,175,55,.3)}50%{text-shadow:0 0 60px rgba(212,175,55,1),0 0 120px rgba(212,175,55,.5)}}
+.h-bn{
+  font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
+  font-size:clamp(2rem,5.5vw,4.2rem);font-weight:900;
+  color:var(--cream);letter-spacing:4px;margin:.2rem 0;
+  text-shadow:0 0 50px rgba(212,175,55,.5),0 2px 4px rgba(0,0,0,.9);
+}
+.h-sub{font-size:clamp(.85rem,2vw,1.05rem);color:rgba(212,175,55,.6);letter-spacing:5px;margin-bottom:1.5rem}
+.h-msg{
+  max-width:480px;font-size:1rem;line-height:1.95;
+  color:rgba(253,246,227,.7);
+  padding:.9rem 1.5rem;
+  border-top:1px solid rgba(212,175,55,.2);
+  border-bottom:1px solid rgba(212,175,55,.2);
+}
+.scroll-hint{margin-top:2.5rem;font-size:.75rem;letter-spacing:4px;color:rgba(212,175,55,.3);animation:scrollBounce 2.5s ease-in-out infinite}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.marq-wrap{
+  padding:1rem 0;overflow:hidden;
+  border-top:1px solid rgba(212,175,55,.1);border-bottom:1px solid rgba(212,175,55,.1);
+  background:rgba(212,175,55,.025);
+}
+.marq-inner{display:flex;gap:2rem;white-space:nowrap;animation:marqScroll 35s linear infinite}
+.marq-item{font-family:'Amiri',Georgia,serif;font-size:1.2rem;color:rgba(212,175,55,.45);letter-spacing:5px;flex-shrink:0}
+@keyframes marqScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sec{padding:4rem 1.5rem}
+.sec-center{text-align:center;margin-bottom:2.5rem}
+.sec-orn{font-family:'Amiri',Georgia,serif;font-size:1.3rem;color:rgba(212,175,55,.3);letter-spacing:10px;display:block;margin-bottom:.4rem}
+.sec-title{
+  font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
+  font-size:clamp(1.4rem,3.5vw,2.1rem);
+  color:var(--g1);letter-spacing:3px;
+  text-shadow:0 0 25px rgba(212,175,55,.4);
+}
+.sec-sub{font-size:.88rem;color:rgba(212,175,55,.5);margin-top:.4rem;letter-spacing:2px}
+.div-line{text-align:center;padding:.8rem 1rem;display:flex;align-items:center;justify-content:center;gap:12px}
+.div-line::before,.div-line::after{content:'';flex:1;max-width:160px;height:1px;background:linear-gradient(90deg,transparent,rgba(212,175,55,.3))}
+.div-line::after{background:linear-gradient(90deg,rgba(212,175,55,.3),transparent)}
+.div-line span{font-family:'Amiri',serif;font-size:1.5rem;color:rgba(212,175,55,.35);letter-spacing:8px}
+.cd-sec{background:linear-gradient(180deg,transparent,rgba(7,20,40,.7),transparent)}
+.cd-grid{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.cd-box{
+  min-width:92px;padding:1.4rem 1.5rem;text-align:center;
+  background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.22);
+  border-radius:18px;position:relative;overflow:hidden;
+}
+.cd-box::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.05),transparent 60%);pointer-events:none}
+.cd-box.pop{animation:cdPop .18s ease}
+@keyframes cdPop{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+.cd-n{
+  font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
+  font-size:clamp(2.5rem,6vw,3.8rem);font-weight:900;
+  color:var(--g1);display:block;line-height:1;
+  text-shadow:0 0 22px rgba(212,175,55,.5);
+}
+.cd-u{font-size:.72rem;color:rgba(212,175,55,.5);letter-spacing:2px;margin-top:6px;display:block}
+.eid-now{display:none;text-align:center;font-family:'Cinzel',serif;font-size:2rem;color:var(--g1);text-shadow:0 0 30px rgba(212,175,55,.8)}
+.lot-sec{max-width:920px;margin:0 auto}
+.lot-shell{
+  background:linear-gradient(145deg,rgba(7,20,40,.95),rgba(4,12,26,.98));
+  border:1px solid rgba(212,175,55,.22);border-radius:28px;padding:2.5rem 2rem;
+  box-shadow:0 0 80px rgba(212,175,55,.05),inset 0 0 60px rgba(0,0,0,.3);
+  position:relative;overflow:hidden;
+}
+.lot-shell::before{
+  content:'';position:absolute;top:-80px;left:-80px;
+  width:250px;height:250px;
+  background:radial-gradient(circle,rgba(212,175,55,.05),transparent 70%);
+  animation:orbMove 14s ease-in-out infinite;pointer-events:none;
+}
+.lot-shell::after{
+  content:'';position:absolute;bottom:-80px;right:-80px;
+  width:250px;height:250px;
+  background:radial-gradient(circle,rgba(14,116,144,.05),transparent 70%);
+  animation:orbMove 18s ease-in-out infinite reverse;pointer-events:none;
+}
+@keyframes orbMove{0%,100%{transform:translate(0,0)}50%{transform:translate(50px,35px)}}
+.p-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin-bottom:1.5rem;position:relative;z-index:2}
+.p-chip{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px;border:1px solid;font-family:'Cinzel','Noto Serif Bengali',serif}
+.wheel-zone{display:flex;flex-direction:column;align-items:center;position:relative;z-index:2}
+.wheel-outer{position:relative;width:320px;height:320px;margin:0 auto 1.5rem}
+#wcanvas{
+  border-radius:50%;
+  box-shadow:0 0 50px rgba(212,175,55,.35),0 0 100px rgba(212,175,55,.12);
+}
+#wcanvas.is-spinning{box-shadow:0 0 80px rgba(212,175,55,.65),0 0 160px rgba(212,175,55,.25)}
+.w-ptr{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  width:0;height:0;z-index:10;
+  border-left:13px solid transparent;border-right:13px solid transparent;
+  border-top:28px solid var(--g1);
+  filter:drop-shadow(0 0 10px rgba(212,175,55,1));
+}
+.w-hub{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:52px;height:52px;border-radius:50%;z-index:10;
+  background:radial-gradient(circle at 38% 35%,var(--g1),var(--g3));
+  border:4px solid var(--bg);box-shadow:0 0 22px rgba(212,175,55,.8);
+  display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+}
+.lot-ctrls{display:flex;flex-direction:column;align-items:center;gap:.85rem;width:100%;max-width:400px}
+.lot-inp{
+  width:100%;background:rgba(212,175,55,.08);
+  border:1px solid rgba(212,175,55,.35);border-radius:99px;
+  padding:.9rem 1.6rem;color:var(--cream);font-size:1rem;
+  font-family:'Noto Serif Bengali',Georgia,serif;
+  outline:none;text-align:center;transition:all .3s;
+}
+.lot-inp:focus{background:rgba(212,175,55,.13);border-color:var(--g2);box-shadow:0 0 22px rgba(212,175,55,.2)}
+.lot-inp::placeholder{color:rgba(253,246,227,.3)}
+.spin-btn{
+  width:100%;background:linear-gradient(135deg,var(--g1),var(--g2) 40%,var(--g3) 80%,var(--g2));
+  background-size:300%;border:none;border-radius:99px;
+  padding:1rem 2rem;font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
+  font-size:1.1rem;font-weight:900;color:var(--bg);cursor:pointer;
+  box-shadow:0 0 35px rgba(212,175,55,.35);transition:all .3s;
+  position:relative;overflow:hidden;animation:btnShimmer 4s linear infinite;
+}
+@keyframes btnShimmer{0%{background-position:0%}100%{background-position:300%}}
+.spin-btn::after{
+  content:'';position:absolute;top:0;left:-80%;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:skewX(-20deg);animation:glare 3.5s ease-in-out infinite;
+}
+@keyframes glare{0%,100%{left:-80%}60%{left:130%}}
+.spin-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 45px rgba(212,175,55,.6)}
+.spin-btn:disabled{opacity:.45;cursor:not-allowed;transform:none;animation:none}
+.res-card{
+  display:none;margin-top:1.5rem;width:100%;position:relative;z-index:2;
+  background:linear-gradient(135deg,rgba(4,12,26,.98),rgba(7,20,40,.98));
+  border:2px solid var(--g2);border-radius:22px;padding:2rem 1.5rem;text-align:center;
+  animation:resBounce .55s cubic-bezier(.175,.885,.32,1.275) both;
+}
+@keyframes resBounce{from{opacity:0;transform:scale(.4) rotate(-8deg)}to{opacity:1;transform:scale(1)}}
+.re-em{font-size:4.5rem;display:block;animation:emWiggle .4s ease infinite alternate}
+@keyframes emWiggle{from{transform:rotate(-12deg) scale(1)}to{transform:rotate(12deg) scale(1.12)}}
+.re-who{font-size:.95rem;color:rgba(212,175,55,.7);margin:.4rem 0}
+.re-amt{
+  font-family:'Cinzel',Georgia,serif;font-size:clamp(3rem,8vw,4.5rem);font-weight:900;
+  color:var(--g1);text-shadow:0 0 30px rgba(212,175,55,.8);line-height:1;
+}
+.re-txt{font-size:.9rem;color:rgba(253,246,227,.6);margin-top:.6rem;line-height:1.7}
+.lot-select{
+  cursor:pointer;transition:all .3s;
+  -webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23D4AF37' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1.2rem center;
+  color-scheme:dark;
+}
+.lot-select option{background:#0d1f3c;color:var(--cream);padding:10px;font-size:1rem;}
+.re-note{font-size:.82rem;color:#86efac;margin-top:.5rem;line-height:1.6;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:.5rem .8rem;display:none}
+.lb{
+  margin-top:2rem;background:rgba(0,0,0,.3);
+  border:1px solid rgba(212,175,55,.14);border-radius:18px;padding:1.4rem;
+  position:relative;z-index:2;
+}
+.lb-h{text-align:center;font-family:'Cinzel',serif;font-size:.95rem;color:var(--g2);letter-spacing:3px;margin-bottom:1rem}
+.lb-row{
+  display:flex;align-items:center;gap:.8rem;padding:.55rem .8rem;
+  border-radius:10px;margin-bottom:.4rem;
+  background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.07);
+  animation:lbIn .35s ease both;
+}
+@keyframes lbIn{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:translateX(0)}}
+.lb-rk{font-size:1.2rem;min-width:30px;text-align:center}
+.lb-nm{flex:1;font-size:.9rem;color:var(--cream2)}
+.lb-pr{font-family:'Cinzel',serif;font-weight:700;color:var(--g1);font-size:.9rem;background:rgba(212,175,55,.1);padding:2px 9px;border-radius:99px}
+.lb-empty{text-align:center;color:rgba(253,246,227,.3);font-size:.85rem;padding:1rem}
+.greet-sec{max-width:700px;margin:0 auto}
+.g-types{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:1.2rem}
+.gtype{
+  background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.2);
+  border-radius:99px;padding:.38rem .95rem;
+  font-family:'Noto Serif Bengali',Georgia,serif;font-size:.83rem;
+  color:rgba(253,246,227,.6);cursor:pointer;transition:all .25s;
+}
+.gtype.on,.gtype:hover{background:rgba(212,175,55,.18);border-color:var(--g2);color:var(--cream)}
+.g-inputs{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin:.8rem 0}
+.g-in{
+  background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.28);
+  border-radius:99px;padding:.7rem 1.3rem;
+  color:var(--cream);font-family:'Noto Serif Bengali',Georgia,serif;font-size:.9rem;
+  outline:none;width:185px;text-align:center;transition:all .3s;
+}
+.g-in:focus{border-color:var(--g2);box-shadow:0 0 20px rgba(212,175,55,.18)}
+.g-in::placeholder{color:rgba(253,246,227,.28)}
+.g-make{
+  background:linear-gradient(135deg,#0e7490,#0891b2);border:none;border-radius:99px;
+  padding:.7rem 1.8rem;font-family:'Noto Serif Bengali',Georgia,serif;
+  font-size:.92rem;font-weight:700;color:#fff;cursor:pointer;transition:all .3s;
+  box-shadow:0 0 22px rgba(14,116,144,.3);
+}
+.g-make:hover{transform:scale(1.05);box-shadow:0 0 38px rgba(14,116,144,.6)}
+.g-card{
+  display:none;
+  background:linear-gradient(135deg,rgba(7,20,40,.97),rgba(14,116,144,.07));
+  border:1px solid rgba(212,175,55,.28);border-radius:22px;padding:2rem 1.5rem;
+  text-align:center;position:relative;overflow:hidden;
+  animation:fadeUp .5s ease both;
+}
+.g-card::before{content:'"';position:absolute;top:-8px;left:8px;font-family:'Amiri',serif;font-size:7rem;color:rgba(212,175,55,.04);line-height:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.g-ar{font-family:'Amiri',Georgia,serif;font-size:2rem;color:var(--g2);margin-bottom:.6rem;line-height:1.4;text-shadow:0 0 18px rgba(212,175,55,.3)}
+.g-body{font-size:.97rem;line-height:1.95;color:rgba(253,246,227,.82);white-space:pre-line}
+.g-sig{font-size:.8rem;color:rgba(212,175,55,.5);margin-top:.7rem;font-style:italic}
+.g-acts{display:flex;justify-content:center;gap:.55rem;margin-top:1.1rem;flex-wrap:wrap}
+.g-act{background:transparent;border:1px solid rgba(212,175,55,.27);border-radius:99px;padding:.35rem .95rem;color:var(--g2);font-family:'Noto Serif Bengali',Georgia,serif;font-size:.78rem;cursor:pointer;transition:all .2s}
+.g-act:hover{background:rgba(212,175,55,.1);border-color:var(--g2)}
+.feats-sec{max-width:1080px;margin:0 auto}
+.feats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1.2rem}
+.feat-card{
+  background:linear-gradient(145deg,rgba(7,20,40,.85),rgba(4,12,26,.95));
+  border:1px solid rgba(212,175,55,.13);border-radius:22px;padding:2rem 1.5rem;
+  text-align:center;cursor:pointer;position:relative;overflow:hidden;
+  transition:all .4s cubic-bezier(.175,.885,.32,1.275);
+}
+.feat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(14,116,144,.05));opacity:0;transition:opacity .3s;pointer-events:none}
+.feat-card:hover{transform:translateY(-9px) scale(1.02);border-color:rgba(212,175,55,.38);box-shadow:0 18px 55px rgba(212,175,55,.1)}
+.feat-card:hover::after{opacity:1}
+.feat-icon{font-size:3.4rem;display:block;margin-bottom:.85rem;transition:transform .35s}
+.feat-card:hover .feat-icon{transform:scale(1.22) rotate(8deg)}
+.feat-name{font-family:'Cinzel','Noto Serif Bengali',serif;font-size:1.05rem;color:var(--g2);margin-bottom:.55rem;letter-spacing:1px}
+.feat-txt{font-size:.86rem;color:rgba(253,246,227,.58);line-height:1.7}
+.quiz-sec{max-width:650px;margin:0 auto}
+.q-shell{
+  background:linear-gradient(145deg,rgba(7,20,40,.93),rgba(4,12,26,.97));
+  border:1px solid rgba(212,175,55,.18);border-radius:24px;padding:2.5rem 2rem;
+}
+.q-prog{height:4px;background:rgba(212,175,55,.1);border-radius:99px;margin-bottom:1.5rem;overflow:hidden}
+.q-prog-fill{height:100%;background:linear-gradient(90deg,#0e7490,var(--g2));border-radius:99px;transition:width .6s ease}
+.q-score-disp{font-family:'Cinzel',serif;font-size:1.7rem;color:var(--g1);text-align:center;margin-bottom:1rem;text-shadow:0 0 18px rgba(212,175,55,.4)}
+.q-text{font-size:1.02rem;color:var(--cream);line-height:1.7;text-align:center;min-height:52px;margin-bottom:1.5rem}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.q-opt{
+  background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.17);
+  border-radius:13px;padding:.85rem;color:var(--cream2);font-size:.88rem;
+  font-family:'Noto Serif Bengali',Georgia,serif;cursor:pointer;text-align:center;
+  transition:all .3s;
+}
+.q-opt:hover:not(.locked){background:rgba(212,175,55,.14);border-color:var(--g2);transform:scale(1.02)}
+.q-opt.right{background:rgba(34,197,94,.15);border-color:#22c55e;color:#86efac}
+.q-opt.wrong{background:rgba(239,68,68,.15);border-color:#ef4444;color:#fca5a5}
+.q-opt.locked{cursor:default}
+.q-next{display:none;margin-top:1.1rem;width:100%;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);border-radius:99px;padding:.6rem;color:var(--g1);font-family:'Noto Serif Bengali',Georgia,serif;font-size:.88rem;cursor:pointer;transition:all .25s}
+.q-next:hover{background:rgba(212,175,55,.2)}
+.fab{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:300;
+  width:56px;height:56px;border-radius:50%;border:none;
+  background:linear-gradient(135deg,var(--g2),#be185d);
+  font-size:1.65rem;cursor:pointer;
+  box-shadow:0 6px 28px rgba(212,175,55,.4);
+  transition:transform .2s;
+  animation:fabPulse 3s ease-in-out infinite;
+}
+@keyframes fabPulse{0%,100%{box-shadow:0 6px 28px rgba(212,175,55,.4)}50%{box-shadow:0 6px 46px rgba(212,175,55,.8),0 0 0 10px rgba(212,175,55,.07)}}
+.fab:hover{transform:scale(1.15) rotate(18deg)}
+footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid rgba(212,175,55,.1)}
+.ft-ar{font-family:'Amiri',Georgia,serif;font-size:1.5rem;color:rgba(212,175,55,.42);letter-spacing:4px;margin-bottom:.5rem}
+.ft-bn{color:rgba(253,246,227,.32);font-size:.86rem}
+@media(max-width:580px){
+  .wheel-outer{width:270px;height:270px}
+  #wcanvas{width:270px!important;height:270px!important}
+  .cd-n{font-size:2.2rem}.cd-box{min-width:74px;padding:1rem}
+  .q-opts{grid-template-columns:1fr}
+  .lot-shell{padding:1.5rem 1rem}
+  .feats-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:380px){.feats-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<canvas id="starsBg"></canvas>
+<canvas id="fwCanvas"></canvas>
+
+<div class="page">
+
+<nav class="nav">
+  <a class="nb" href="#hero">🏠 হোম</a>
+  <a class="nb" href="#countdown">⏳ কাউন্টডাউন</a>
+  <a class="nb" href="#lottery">🎰 সালামি লটারি</a>
+  <a class="nb" href="#greeting">💌 শুভেচ্ছা</a>
+  <a class="nb" href="#quiz">🧠 কুইজ</a>
+  <a class="nb" href="#features">🌙 ঈদ</a>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-frame"></div>
+  <div class="c-d tl"></div><div class="c-d tr"></div>
+  <div class="c-d bl"></div><div class="c-d br"></div>
+  <div class="lan-row" id="lanRow"></div>
+  <div class="moon-wrap">
+    <div class="moon-halo"></div>
+    <div class="moon-body"></div>
+    <div class="moon-bite"></div>
+    <div class="moon-star1">⭐</div>
+    <div class="moon-star2">✦</div>
+  </div>
+  <div class="h-arabic">عيد مبارك</div>
+  <h1 class="h-bn">ঈদ মুবারক ২০২৬</h1>
+  <p class="h-sub">✦ &nbsp; খুশির ঈদ &nbsp; ✦ &nbsp; আনন্দের ঈদ &nbsp; ✦</p>
+  <div class="h-msg">
+    রমজানের পবিত্র সাধনার পর এলো আনন্দের বার্তা —<br>
+    আল্লাহ সবার রোজা ও ইবাদত কবুল করুন।<br>
+    জীবন হোক সুখময়, পরিবার থাকুক হাসিখুশি! 🌙<br>
+    <span style="
+      font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;
+      font-size:clamp(1.2rem,2vw,1.5rem);
+      font-weight:900;
+      background:linear-gradient(135deg,#FFFBE6,#FFE566,#D4AF37,#A07828,#D4AF37,#FFE566);
+      background-size:300%;
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      animation:goldPulse 4s ease-in-out infinite,textShimmer 5s linear infinite;
+      letter-spacing:4px;
+      text-shadow:none;
+      filter:drop-shadow(0 0 30px rgba(212,175,55,.5));
+    ">[MAHIM AHMAD]</span>
+  </div>
+  <p class="scroll-hint">▼ &nbsp; নিচে স্ক্রোল করো &nbsp; ▼</p>
+</section>
+
+<div class="marq-wrap"><div class="marq-inner" id="marq"></div></div>
+
+<section class="sec cd-sec" id="countdown">
+  <div class="sec-center">
+    <span class="sec-orn">❋ ✦ ❋</span>
+    <div class="sec-title">ঈদের আর বাকি আছে</div>
+  </div>
+  <div class="cd-grid" id="cdGrid"></div>
+  <div class="eid-now" id="eidNow">🎉 ঈদ মুবারক! আজকেই ঈদ! 🎉</div>
+</section>
+
+<div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
+
+<section class="sec lot-sec" id="lottery">
+  <div class="sec-center">
+    <span class="sec-orn">🎰 ✦ 🎰</span>
+    <div class="sec-title">সালামি লটারি</div>
+    <div class="sec-sub">নাম লিখো · চাকা ঘোরাও · সালামি জিতে নাও!</div>
+  </div>
+  <div class="lot-shell">
+    <div class="p-chips" id="pChips"></div>
+    <div class="wheel-zone">
+      <div class="wheel-outer">
+        <div class="w-ptr"></div>
+        <canvas id="wcanvas" width="320" height="320"></canvas>
+        <div class="w-hub">🌙</div>
+      </div>
+      <div class="lot-ctrls">
+        <input class="lot-inp" id="lotName" placeholder="তোমার পুরো নাম ✍️" maxlength="24">
+        <input class="lot-inp" id="lotBkash" placeholder="বিকাশ নম্বর 📱" maxlength="11" type="tel">
+        <input class="lot-inp" id="lotCgpa" placeholder="CGPA (যেমন: 3.75) 📊" maxlength="4">
+        <select class="lot-inp lot-select" id="lotLevel" onchange="levelColorChange(this)">
+          <option value="" disabled selected style="background:#040c1a;color:rgba(253,246,227,.4)">Junior / Senior? 🎓</option>
+          <option value="Junior" style="background:#040c1a;color:#93c5fd">🎒 Junior </option>
+          <option value="Senior" style="background:#040c1a;color:#fdba74">🎓 Senior </option>
+        </select>
+        <button class="spin-btn" id="spinBtn" onclick="doSpin()">🎰 &nbsp; চাকা ঘোরাও!</button>
+      </div>
+      <div class="res-card" id="resCard">
+        <span class="re-em" id="reEm">🎉</span>
+        <div class="re-who" id="reWho"></div>
+        <div class="re-amt" id="reAmt"></div>
+        <div class="re-txt" id="reTxt"></div>
+        <div class="re-note" id="reNote"></div>
+        <div style="margin-top:1rem">
+          <div style="font-size:.8rem;color:rgba(212,175,55,.7);margin-bottom:.5rem;letter-spacing:1px">👇 টাকা পেতে WhatsApp এ ক্লিক করো</div>
+          <button onclick="sendWA()" style="background:linear-gradient(135deg,#25d366,#128c7e);border:none;color:#fff;padding:.6rem 1.8rem;font-size:.95rem;border-radius:99px;cursor:pointer;box-shadow:0 0 20px rgba(37,211,102,.4)">📲 WhatsApp এ পাঠাও</button>
+        </div>
+      </div>
+    </div>
+    <div class="lb">
+      <div class="lb-h">🏆 &nbsp; সালামি লিডারবোর্ড</div>
+      <div id="lbBody"><div class="lb-empty">এখনো কেউ খেলেনি — তুমিই প্রথম! 🎯</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
+
+<section class="sec greet-sec" id="greeting">
+  <div class="sec-center">
+    <span class="sec-orn">💌 ✦ 💌</span>
+    <div class="sec-title">ঈদের শুভেচ্ছা বার্তা</div>
+    <div class="sec-sub">প্রিয়জনকে পাঠাও হৃদয় থেকে</div>
+  </div>
+  <div class="g-types">
+    <button class="gtype on" onclick="setGT(this,'friend')">👫 বন্ধু</button>
+    <button class="gtype" onclick="setGT(this,'family')">👨‍👩‍👧 পরিবার</button>
+    <button class="gtype" onclick="setGT(this,'boss')">💼 বস</button>
+    <button class="gtype" onclick="setGT(this,'crush')">💝 ক্রাশ</button>
+    <button class="gtype" onclick="setGT(this,'funny')">😂 মজার</button>
+    <button class="gtype" onclick="setGT(this,'formal')">🎩 আনুষ্ঠানিক</button>
+  </div>
+  <div class="g-inputs">
+    <input class="g-in" id="gFrom" placeholder="তোমার নাম">
+    <input class="g-in" id="gTo" placeholder="কাকে পাঠাবে?">
+    <button class="g-make" onclick="mkGreet()">✨ বানাও</button>
+  </div>
+  <div class="g-card" id="gCard">
+    <div class="g-ar" id="gAr"></div>
+    <div class="g-body" id="gBody"></div>
+    <div class="g-sig" id="gSig"></div>
+    <div class="g-acts">
+      <button class="g-act" onclick="cpGreet()">📋 কপি</button>
+      <button class="g-act" onclick="mkGreet()">🔄 আবার বানাও</button>
+      <button class="g-act" onclick="shrGreet()">📤 শেয়ার</button>
+    </div>
+  </div>
+</section>
+
+<!-- <div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
+
+<section class="sec quiz-sec" id="quiz">
+  <div class="sec-center">
+    <span class="sec-orn">🧠 ✦ 🧠</span>
+    <div class="sec-title">ঈদ কুইজ</div>
+    <div class="sec-sub">কতটুকু জানো ঈদ সম্পর্কে?</div>
+  </div>
+  <div class="q-shell">
+    <div class="q-prog"><div class="q-prog-fill" id="qFill" style="width:0%"></div></div>
+    <div class="q-score-disp" id="qScr">স্কোর: ০</div>
+    <div class="q-text" id="qTxt">লোড হচ্ছে...</div>
+    <div class="q-opts" id="qOpts"></div>
+    <button class="q-next" id="qNext" onclick="nextQ()">পরের প্রশ্ন →</button>
+  </div>
+</section> -->
+
+<div class="div-line"><span>✦ ❋ ✦ ❋ ✦</span></div>
+
+<section class="sec feats-sec" id="features">
+  <div class="sec-center">
+    <span class="sec-orn">🌙 ✦ 🌙</span>
+    <div class="sec-title">ঈদের আনন্দ</div>
+  </div>
+  <div class="feats-grid">
+    <div class="feat-card"><span class="feat-icon">🕌</span><div class="feat-name">ঈদের নামাজ</div><div class="feat-txt">ভোরে ঈদগাহে যাও, আল্লাহর কাছে শুকরিয়া জানাও।</div></div>
+    <div class="feat-card"><span class="feat-icon">🍮</span><div class="feat-name">সেমাই পায়েস</div><div class="feat-txt">মায়ের হাতের সেমাই ছাড়া ঈদ কি হয়? মনভরে খাও!</div></div>
+    <div class="feat-card"><span class="feat-icon">💸</span><div class="feat-name">ঈদের সালামি</div><div class="feat-txt">উপরের লটারিতে চেষ্টা করো — হয়তো জ্যাকপট! 🎰</div></div>
+    <!-- <div class="feat-card"><span class="feat-icon">👗</span><div class="feat-name">নতুন পোশাক</div><div class="feat-txt">ঈদে নতুন জামার গন্ধ অন্যরকম। পরিপাটি হও!</div></div>
+    <div class="feat-card"><span class="feat-icon">🤗</span><div class="feat-name">কোলাকুলি</div><div class="feat-txt">রাগ-অভিমান ভুলে সবার সাথে কোলাকুলি করো!</div></div> -->
+    <div class="feat-card" onclick="doFW()"><span class="feat-icon">🎆</span><div class="feat-name">আতশবাজি!</div><div class="feat-txt">ক্লিক করো — স্ক্রিনে আতশবাজি ফুটবে! ✨</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-ar">عيد مبارك وكل عام وأنتم بخير</div>
+  <div style="font-size:1.5rem;margin:.5rem 0">🌙 ⭐ 🌙</div>
+  <div class="ft-bn">ঈদ মুবারক — জীবন হোক সুখ, শান্তি ও বরকতে পূর্ণ 💛</div>
+  <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(212,175,55,.15)">
+    <div style="font-family:'Amiri',Georgia,serif;font-size:1rem;color:rgba(212,175,55,.4);letter-spacing:3px;margin-bottom:.6rem">—  —</div>
+    <h2 style="font-family:'Cinzel','Noto Serif Bengali',Georgia,serif;font-size:clamp(1.2rem,2vw,1.5rem);font-weight:900;background:linear-gradient(135deg,#FFFBE6,#FFE566,#D4AF37,#A07828,#D4AF37,#FFE566);background-size:300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:4px;filter:drop-shadow(0 0 30px rgba(212,175,55,.5));margin-bottom:.4rem">MAHIM AHMAD</h2>
+    <div style="font-size:.9rem;color:rgba(212,175,55,.5);letter-spacing:3px">✦ &nbsp; ঈদ মুবারক &nbsp; ✦</div>
+  </div>
+</footer>
+
+</div>
+
+<button class="fab" onclick="doFW()" title="আতশবাজি">🎆</button>
+
+<script>
+// ═══ STARS ═══
+const sc=document.getElementById('starsBg'),sx=sc.getContext('2d');
+let stars=[];
+function initStars(){
+  sc.width=innerWidth;sc.height=innerHeight;stars=[];
+  for(let i=0;i<300;i++)stars.push({x:Math.random()*sc.width,y:Math.random()*sc.height,r:Math.random()*1.6+.2,a:Math.random(),da:(Math.random()-.5)*.018,h:Math.random()*40+30});
+}
+function drawStars(){
+  sx.clearRect(0,0,sc.width,sc.height);
+  stars.forEach(s=>{
+    s.a+=s.da;if(s.a<=0||s.a>=1)s.da*=-1;
+    sx.beginPath();sx.arc(s.x,s.y,s.r,0,Math.PI*2);
+    sx.fillStyle='hsla('+s.h+',80%,90%,'+s.a+')';sx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+initStars();drawStars();addEventListener('resize',initStars);
+
+// ═══ FIREWORKS ═══
+const fc=document.getElementById('fwCanvas'),fx=fc.getContext('2d');
+let parts=[];
+function resizeFW(){fc.width=innerWidth;fc.height=innerHeight;}
+resizeFW();addEventListener('resize',resizeFW);
+
+function doFW(){
+  for(let b=0;b<10;b++){
+    setTimeout(function(){
+      var x=Math.random()*fc.width,y=Math.random()*fc.height*.6+30,h=Math.random()*360;
+      for(var i=0;i<120;i++){
+        var a=Math.PI*2*i/120+Math.random()*.15,sp=Math.random()*8+2;
+        parts.push({x:x,y:y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,life:1,dec:Math.random()*.025+.018,r:Math.random()*3+1,col:'hsl('+(h+Math.random()*60-30)+',100%,65%)'});
+      }
+    },b*220);
+  }
+}
+
+function fwTick(){
+  parts=parts.filter(function(p){return p.life>0;});
+  if(parts.length===0){
+    fx.clearRect(0,0,fc.width,fc.height);
+  } else {
+    fx.fillStyle='rgba(4,12,26,.18)';
+    fx.fillRect(0,0,fc.width,fc.height);
+    parts.forEach(function(p){
+      p.x+=p.vx;p.y+=p.vy;p.vy+=.07;p.life-=p.dec;
+      fx.globalAlpha=p.life;
+      fx.beginPath();fx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      fx.fillStyle=p.col;fx.fill();
+    });
+    fx.globalAlpha=1;
+  }
+  requestAnimationFrame(fwTick);
+}
+fwTick();
+window.addEventListener('load',function(){setTimeout(doFW,300);setTimeout(doFW,1400);setTimeout(doFW,2800);});
+
+// ═══ LANTERNS ═══
+var LCLR=[
+  {bg:'#e63946',g:'#ff6b6b'},{bg:'#f4a261',g:'#ffc48a'},
+  {bg:'#2a9d8f',g:'#4ecdc4'},{bg:'#e9c46a',g:'#ffe680'},
+  {bg:'#9b5de5',g:'#c77dff'},{bg:'#f72585',g:'#ff69b4'},
+  {bg:'#4361ee',g:'#74b0ff'},{bg:'#06d6a0',g:'#80ffdb'},
+];
+var lr=document.getElementById('lanRow');
+for(var i=0;i<8;i++){
+  var c=LCLR[i],lft=(i/7*84+8).toFixed(1),dl=(i*.6).toFixed(1),dur=(3.2+i*.38).toFixed(1);
+  lr.innerHTML+='<div class="lan" style="left:'+lft+'%;--d:'+dur+'s;--dl:-'+dl+'s"><div class="lan-rope"></div><div class="lan-cap"></div><div class="lan-body" style="background:radial-gradient(circle at 38% 28%,'+c.g+','+c.bg+');box-shadow:0 0 18px '+c.g+',0 0 32px '+c.bg+'66"><div class="lan-shine"></div></div><div class="lan-drip" style="color:'+c.bg+'"></div></div>';
+}
+
+// ═══ MARQUEE ═══
+var MI=['ঈদ মুবারক','عيد مبارك','EID MUBARAK','✦','❋','🌙','⭐','আনন্দের ঈদ','তাকাব্বালাল্লাহু মিন্না ওয়া মিনকুম','✦'];
+var mh='';for(var mi=0;mi<3;mi++)mh+=MI.map(function(x){return'<span class="marq-item">'+x+'</span>';}).join('');
+document.getElementById('marq').innerHTML=mh;
+
+// ═══ COUNTDOWN ═══
+var EID=new Date('2026-03-20T06:00:00');
+function tick(){
+  var d=EID-Date.now();
+  if(d<=0){document.getElementById('cdGrid').style.display='none';document.getElementById('eidNow').style.display='block';return;}
+  var its=[
+    {v:Math.floor(d/864e5),u:'দিন'},
+    {v:Math.floor(d%864e5/36e5),u:'ঘণ্টা'},
+    {v:Math.floor(d%36e5/6e4),u:'মিনিট'},
+    {v:Math.floor(d%6e4/1e3),u:'সেকেন্ড'}
+  ];
+  var g=document.getElementById('cdGrid');
+  if(!g.children.length){
+    g.innerHTML=its.map(function(x,i){return'<div class="cd-box" id="cb'+i+'"><span class="cd-n" id="cn'+i+'">'+String(x.v).padStart(2,'0')+'</span><span class="cd-u">'+x.u+'</span></div>';}).join('');
+  } else {
+    its.forEach(function(x,i){
+      var v=String(x.v).padStart(2,'0'),el=document.getElementById('cn'+i);
+      if(el&&el.textContent!==v){el.textContent=v;var b=document.getElementById('cb'+i);b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');}
+    });
+  }
+}
+tick();setInterval(tick,1000);
+
+// ═══ LOTTERY ═══
+var PRIZES=[
+  {t:'৳10',a:10,bg:'#14532d',fg:'#86efac',e:'💵'},
+  {t:'৳20',a:20,bg:'#1e3a5f',fg:'#93c5fd',e:'💴'},
+  {t:'৳50',a:50,bg:'#451a03',fg:'#fcd34d',e:'💰'},
+  {t:'৳100',a:100,bg:'#3b0764',fg:'#d8b4fe',e:'💎'},
+  {t:'৳200',a:200,bg:'#4a1942',fg:'#f0abfc',e:'🤑'},
+  {t:'৳30',a:30,bg:'#0c4a6e',fg:'#7dd3fc',e:'🪙'},
+  {t:'🎰 ৳1000',a:1000,bg:'#713f12',fg:'#fde68a',e:'🎰'},
+  {t:'৳50',a:50,bg:'#14532d',fg:'#a7f3d0',e:'💰'},
+  {t:'৳10',a:10,bg:'#1e1b4b',fg:'#c7d2fe',e:'💵'},
+  {t:'৳500',a:500,bg:'#1e3a5f',fg:'#ffe066',e:'🎁'},
+  {t:'৳100',a:100,bg:'#042f2e',fg:'#99f6e4',e:'💎'},
+  {t:'৳20',a:20,bg:'#3f1f01',fg:'#fed7aa',e:'💴'},
+];
+var PN=PRIZES.length,PARC=2*Math.PI/PN;
+
+document.getElementById('pChips').innerHTML=
+  [...new Set(PRIZES.map(function(p){return p.a;}))].sort(function(a,b){return a-b;}).map(function(a){
+    var p=PRIZES.find(function(x){return x.a===a;});
+    return'<span class="p-chip" style="color:'+p.fg+';border-color:'+p.fg+'55;background:'+p.bg+'99">'+p.e+' ৳'+a+'</span>';
+  }).join('');
+
+var wc=document.getElementById('wcanvas'),wCtx=wc.getContext('2d');
+var WSZ=wc.width,WCX=WSZ/2,WCY=WSZ/2,WR=WSZ/2-5;
+var wAng=0,wVel=0,wSpin=false,lbData=[];
+
+function drawWheel(){
+  wCtx.clearRect(0,0,WSZ,WSZ);
+  for(var i=0;i<PN;i++){
+    var s=wAng+i*PARC,e=s+PARC,p=PRIZES[i];
+    wCtx.beginPath();wCtx.moveTo(WCX,WCY);wCtx.arc(WCX,WCY,WR,s,e);wCtx.closePath();
+    wCtx.fillStyle=p.bg;wCtx.fill();
+    var gr=wCtx.createRadialGradient(WCX,WCY,WR*.25,WCX,WCY,WR);
+    gr.addColorStop(0,'rgba(255,255,255,.05)');gr.addColorStop(1,'rgba(0,0,0,.12)');
+    wCtx.beginPath();wCtx.moveTo(WCX,WCY);wCtx.arc(WCX,WCY,WR,s,e);wCtx.closePath();
+    wCtx.fillStyle=gr;wCtx.fill();
+    wCtx.beginPath();wCtx.moveTo(WCX,WCY);wCtx.arc(WCX,WCY,WR,s,e);wCtx.closePath();
+    wCtx.strokeStyle='rgba(212,175,55,.18)';wCtx.lineWidth=1.5;wCtx.stroke();
+    wCtx.save();wCtx.translate(WCX,WCY);wCtx.rotate(s+PARC/2);
+    wCtx.textAlign='right';wCtx.fillStyle=p.fg;
+    wCtx.font='700 '+(p.a>=500?11:13)+'px Noto Serif Bengali,Georgia,serif';
+    wCtx.fillText(p.t,WR-9,5);
+    wCtx.restore();
+  }
+  wCtx.beginPath();wCtx.arc(WCX,WCY,WR,0,Math.PI*2);
+  wCtx.strokeStyle='rgba(212,175,55,.5)';wCtx.lineWidth=3;wCtx.stroke();
+  wCtx.beginPath();wCtx.arc(WCX,WCY,28,0,Math.PI*2);
+  wCtx.fillStyle='#040c1a';wCtx.fill();
+  wCtx.strokeStyle='rgba(212,175,55,.4)';wCtx.lineWidth=2;wCtx.stroke();
+}
+drawWheel();
+
+function getWinner(){
+  var pa=(((-Math.PI/2)-wAng)%(2*Math.PI)+2*Math.PI)%(2*Math.PI);
+  return PRIZES[Math.floor(pa/PARC)%PN];
+}
+function wFrame(){
+  if(!wSpin)return;
+  wVel*=.987;wAng+=wVel;drawWheel();
+  if(wVel>.003)requestAnimationFrame(wFrame);
+  else{
+    wSpin=false;wc.classList.remove('is-spinning');
+    showResult(getWinner(),document.getElementById('lotName').value.trim());
+    document.getElementById('spinBtn').disabled=false;
+    doFW();
+  }
+}
+function doSpin(){
+  var nm=document.getElementById('lotName').value.trim();
+  var bk=document.getElementById('lotBkash').value.trim();
+  if(!nm){
+    var inp=document.getElementById('lotName');
+    inp.style.borderColor='rgba(239,68,68,.7)';inp.placeholder='আগে নাম দাও! 😅';
+    setTimeout(function(){inp.style.borderColor='';inp.placeholder='তোমার পুরো নাম ✍️';},2200);return;
+  }
+  if(!bk||bk.length<11){
+    var inp2=document.getElementById('lotBkash');
+    inp2.style.borderColor='rgba(239,68,68,.7)';inp2.placeholder='সঠিক বিকাশ নম্বর দাও! 📱';
+    setTimeout(function(){inp2.style.borderColor='';inp2.placeholder='বিকাশ নম্বর 📱';},2200);return;
+  }
+  if(wSpin)return;
+  document.getElementById('resCard').style.display='none';
+  wSpin=true;wVel=.4+Math.random()*.2;
+  document.getElementById('spinBtn').disabled=true;
+  wc.classList.add('is-spinning');
+  requestAnimationFrame(wFrame);
+}
+
+var lastEntry=null;
+
+function showResult(p,nm){
+  var bk=document.getElementById('lotBkash').value.trim();
+  var cgpa=document.getElementById('lotCgpa').value.trim();
+  var lvl=document.getElementById('lotLevel').value||'—';
+  var msgs=[
+    'মোবারক হো '+nm+'! Mahim Ahmad এর তরফ থেকে সালামি নেও! 🎉',
+    'বাহ '+nm+'! Mahim Ahmad ভাই তোমাকে সালামি দিচ্ছেন — ঈদ মুবারক! 🌙',
+    'আলহামদুলিল্লাহ! '+nm+' — Mahim Ahmad এর তরফ থেকে ঈদের সালামি! 💛',
+    'সুবহানাল্লাহ! '+nm+' — Mahim Ahmad ভাই এর দোয়া ও সালামি নাও! 🏆',
+  ];
+  document.getElementById('reEm').textContent=p.e;
+  document.getElementById('reWho').textContent='Mahim Ahmad এর তরফ থেকে '+nm+' পেলো —';
+  document.getElementById('reAmt').textContent='৳'+p.a.toLocaleString();
+  document.getElementById('reTxt').textContent=msgs[Math.floor(Math.random()*msgs.length)];
+  var oneP=(p.a*0.01).toFixed(2);
+  var funnyNotes=[
+    '😂 দ্রষ্টব্য: তুমি আসলে পাবে মাত্র '+oneP+' টাকা — মানে ১%! বাকিটা মাহিম ভাইয়ের ফি! 🤣',
+    '😅 দ্রষ্টব্য: '+p.a+' টাকার ১% হলো '+oneP+' টাকা — এটাই তোমার ভাগ্যে! ভাই কমিশন নেবেন! 😆',
+    '🙈 দ্রষ্টব্য: '+p.a+' টাকার মধ্যে '+oneP+' টাকা তোমার, বাকি ৯৯% প্রসেসিং ফি! 😂',
+  ];
+  var noteEl=document.getElementById('reNote');
+  noteEl.textContent=funnyNotes[Math.floor(Math.random()*funnyNotes.length)];
+  noteEl.style.display='block';
+  document.getElementById('resCard').style.display='block';
+  lastEntry={nm:nm,bk:bk,cgpa:cgpa||'—',lvl:lvl,prize:p.a};
+  try{
+    var saved=JSON.parse(localStorage.getItem('eid_entries')||'[]');
+    saved.unshift({nm:nm,bk:bk,cgpa:cgpa||'—',lvl:lvl,prize:p.a,time:new Date().toLocaleTimeString()});
+    localStorage.setItem('eid_entries',JSON.stringify(saved.slice(0,50)));
+  }catch(e){}
+  lbData.unshift({nm:nm,a:p.a,e:p.e});lbData=lbData.slice(0,10);renderLB();
+}
+
+function renderLB(){
+  var s=[...lbData].sort(function(a,b){return b.a-a.a;}),ranks=['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+  document.getElementById('lbBody').innerHTML=s.length
+    ?s.map(function(r,i){return'<div class="lb-row" style="animation-delay:'+(i*.06)+'s"><span class="lb-rk">'+(ranks[i]||'•')+'</span><span class="lb-nm">'+r.e+' '+r.nm+'</span><span class="lb-pr">৳'+r.a.toLocaleString()+'</span></div>';}).join('')
+    :'<div class="lb-empty">এখনো কেউ খেলেনি!</div>';
+}
+
+function levelColorChange(sel){
+  if(sel.value==='Junior'){sel.style.borderColor='rgba(96,165,250,.7)';sel.style.background='rgba(59,130,246,.12)';sel.style.color='#93c5fd';}
+  else if(sel.value==='Senior'){sel.style.borderColor='rgba(251,146,60,.7)';sel.style.background='rgba(249,115,22,.12)';sel.style.color='#fdba74';}
+}
+
+function sendWA(){
+  if(!lastEntry){alert('আগে spin করো!');return;}
+  var msg='🎰 ঈদের সালামি লটারি 🎰\n\n👤 নাম: '+lastEntry.nm+'\n📱 বিকাশ: '+lastEntry.bk+'\n📊 CGPA: '+lastEntry.cgpa+'\n🎓 লেভেল: '+lastEntry.lvl+'\n💰 পুরস্কার: ৳'+lastEntry.prize+'\n⏰ সময়: '+new Date().toLocaleTimeString()+'\n\n🌙 Mahim Ahmad এর তরফ থেকে ঈদ মুবারক!';
+  window.open('https://wa.me/8801960603846?text='+encodeURIComponent(msg),'_blank');
+}
+
+// ═══ GREETING ═══
+var gt='friend';
+function setGT(btn,t){document.querySelectorAll('.gtype').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');gt=t;}
+var GD={
+  friend:[
+    function(f,t){return{ar:'عيد مبارك يا صديقي',body:'প্রিয় '+t+',\n\nঈদ মুবারক ভাই! এই বিশেষ দিনে তোর জন্য দুআ করি — আল্লাহ যেন তোকে সুস্বাস্থ্য, হাসি আর বরকত দিয়ে ভরিয়ে রাখেন। তুই ছাড়া ঈদের আড্ডা জমে না। সেমাই খেতে ভুলিস না! 😄\n\nঈদ মুবারক! 🌙',sig:'— '+f+' 💛'};},
+    function(f,t){return{ar:'كل عام وأنتم بخير',body:t+' বস!\n\nরোজার কষ্ট শেষ — এখন মজার সময়! ঈদ মুবারক! হেলথ ডায়েট একদিনের জন্য বন্ধ, শুধু খাও আর ঘুমাও! 😂\n\nভালো থাকিস! 🎉',sig:'তোর '+f};},
+  ],
+  family:[
+    function(f,t){return{ar:'تقبل الله منا ومنكم',body:'প্রিয় '+t+',\n\nঈদ মুবারক! আল্লাহ তোমার সব ইবাদত কবুল করুন, সুস্বাস্থ্য ও দীর্ঘ জীবন দান করুন। তোমার মুখের হাসি দেখলেই মনে শান্তি আসে।',sig:'— '+f+' 💖'};},
+    function(f,t){return{ar:'عيد مبارك',body:'আমার প্রিয় '+t+',\n\nতুমি আমার জীবনের সবচেয়ে বড় নেয়ামত। ঈদ মুবারক! তোমার হাতের সেমাই না খেলে ঈদ হয় না! 🍮',sig:'তোমার '+f+' 🌙'};},
+  ],
+  boss:[
+    function(f,t){return{ar:'عيد مبارك',body:'শ্রদ্ধেয় '+t+',\n\nঈদ মুবারক! আপনার নেতৃত্ব সবসময় অনুপ্রেরণা দেয়। আল্লাহ আপনাকে সুস্বাস্থ্য, দীর্ঘ জীবন ও সাফল্য দান করুন।',sig:'বিনীত, '+f};},
+  ],
+  crush:[
+    function(f,t){return{ar:'عيد مبارك يا جميل',body:t+'...\n\nঈদ মুবারক! এই বিশেষ দিনে তোমাকে বিশেষভাবে মনে পড়ছে। তোমার হাসি দেখলে মনে হয় প্রতিদিনই ঈদ। 🌙',sig:'— '+f+' 💛'};},
+    function(f,t){return{ar:'كل عام وأنتم بخير',body:t+',\n\nঈদের চাঁদের মতোই তুমি আমার জীবনে আলো এনেছ। ঈদ মুবারক! এই ঈদে একটু হাসো। 😊',sig:'💛 '+f};},
+  ],
+  funny:[
+    function(f,t){return{ar:'عيد مبارك 😂',body:'আরে '+t+'!\n\nঈদ মুবারক! মাসভর রোজা রেখেছ, এখন খাওয়ার পালা! আজকে ডায়েট হারাম, ব্যায়াম নিষিদ্ধ — শুধু বিরিয়ানি-সেমাই আর ঘুম! 😂\n\nসালামি না পাঠালে কিন্তু ব্লক করব! 😅',sig:'— '+f+', যে সালামি চায় 😁'};},
+  ],
+  formal:[
+    function(f,t){return{ar:'تقبل الله منا ومنكم صالح الأعمال',body:'জনাব '+t+',\n\nপবিত্র ঈদুল ফিতর উপলক্ষে আপনাকে ও আপনার পরিবারকে জানাই আন্তরিক শুভেচ্ছা। আল্লাহ আমাদের সকলের রোজা ও ইবাদত কবুল করুন।\n\nতাকাব্বালাল্লাহু মিন্না ওয়া মিনকুম।',sig:'বিনম্র শ্রদ্ধায়, '+f};},
+  ],
+};
+function mkGreet(){
+  var fr=document.getElementById('gFrom').value.trim()||'তোমার প্রিয়জন';
+  var to=document.getElementById('gTo').value.trim()||'বন্ধু';
+  var pool=GD[gt]||GD.friend;
+  var g=pool[Math.floor(Math.random()*pool.length)](fr,to);
+  document.getElementById('gAr').textContent=g.ar;
+  document.getElementById('gBody').textContent=g.body;
+  document.getElementById('gSig').textContent=g.sig;
+  var c=document.getElementById('gCard');c.style.display='block';
+  c.style.animation='none';requestAnimationFrame(function(){c.style.animation='fadeUp .5s ease both';});
+}
+function cpGreet(){
+  var t=document.getElementById('gBody').textContent+'\n\n'+document.getElementById('gSig').textContent;
+  navigator.clipboard.writeText(t).then(function(){var b=event.target;b.textContent='✅ কপি!';setTimeout(function(){b.textContent='📋 কপি';},2000);});
+}
+function shrGreet(){var t=document.getElementById('gBody').textContent;if(navigator.share)navigator.share({text:t});else cpGreet();}
+
+// ═══ QUIZ ═══
+var QS=[
+  {q:'ঈদুল ফিতর কোন মাসের ১ তারিখে?',opts:['রমজান','শাওয়াল','মহররম','রজব'],a:1},
+  {q:'ঈদের নামাজ কত রাকাত?',opts:['২ রাকাত','৪ রাকাত','৩ রাকাত','৮ রাকাত'],a:0},
+  {q:'ঈদুল ফিতরে কোন ইবাদত ফরজ?',opts:['হজ','যাকাত','সদকাতুল ফিতর','তারাবিহ'],a:2},
+  {q:'"ঈদ মুবারক" মানে কী?',opts:['ঈদের খাবার','শুভ ঈদ','ঈদের নামাজ','খুশির সময়'],a:1},
+  {q:'ঈদের দিন সকালে কী সুন্নত?',opts:['না খেয়ে নামাজে যাওয়া','মিষ্টি খেয়ে নামাজে যাওয়া','সন্ধ্যায় নামাজ','বাড়িতে পড়া'],a:1},
+  {q:'ঈদুল আযহায় প্রধান আমল?',opts:['রোজা','কোরবানি','তারাবিহ','ইতিকাফ'],a:1},
+  {q:'"তাকাব্বালাল্লাহু মিন্না ওয়া মিনকুম" অর্থ?',opts:['ঈদ মুবারক','আল্লাহ আমল কবুল করুন','আল্লাহু আকবার','সুবহানাল্লাহ'],a:1},
+  {q:'ঈদের নামাজে অতিরিক্ত তাকবীর?',opts:['৪টি','৬টি','৮টি','১২টি'],a:1},
+];
+var qi=0,qs=0,qa=false;
+function loadQ(){
+  if(qi>=QS.length){
+    document.getElementById('qTxt').textContent='কুইজ শেষ! 🎉';
+    document.getElementById('qOpts').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:1rem"><div style="font-size:3rem">🏆</div><div style="color:var(--g1);font-family:Cinzel,serif;font-size:1.2rem;margin:.5rem">স্কোর: '+qs+'/'+QS.length+'</div><button class="g-make" style="margin-top:.8rem" onclick="resetQ()">🔄 আবার খেলো</button></div>';
+    document.getElementById('qNext').style.display='none';return;
+  }
+  qa=false;var q=QS[qi];
+  document.getElementById('qFill').style.width=(qi/QS.length*100)+'%';
+  document.getElementById('qTxt').textContent=q.q;
+  document.getElementById('qOpts').innerHTML=q.opts.map(function(o,i){return'<button class="q-opt" onclick="ansQ('+i+')">'+o+'</button>';}).join('');
+  document.getElementById('qNext').style.display='none';
+}
+function ansQ(i){
+  if(qa)return;qa=true;var q=QS[qi];
+  document.querySelectorAll('.q-opt').forEach(function(o,j){o.classList.add('locked');if(j===q.a)o.classList.add('right');else if(j===i)o.classList.add('wrong');});
+  if(i===q.a){qs++;document.getElementById('qScr').textContent='স্কোর: '+qs;doFW();}
+  document.getElementById('qNext').style.display='block';
+}
+function nextQ(){qi++;loadQ();}
+function resetQ(){qi=0;qs=0;document.getElementById('qScr').textContent='স্কোর: ০';loadQ();}
+loadQ();
+</script>
+</body>
+</html>
